@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer base {
+   button:not(:disabled) {
+      @apply cursor-pointer;
+   }
+}
+
+@theme {
+   --color-dark-pitch: #0c0d12;
+   --color-dark-deep: #191b20;
+   --color-dark-base: #1a1a1e;
+
+   --color-dark-elevated: #282a30;
+   --color-dark-surface: #2a2b33;
+
+   --color-dark-muted: #41454f;
+
+   --drop-shadow-wheel: 0px 0px 60px var(--color-black);
+}
+
+@utility absolute-center {
+   @apply left-1/2 top-1/2 -translate-1/2;
+}
+
+@utility absolute-center-x {
+   @apply left-1/2 -translate-x-1/2;
+}
+
+@utility disk-outer {
+   @apply aspect-square rounded-full bg-dark-surface p-1.5;
+}
+
+@utility disk-inner {
+   @apply aspect-square bg-linear-112 from-dark-muted to-dark-surface rounded-full border border-dark-pitch;
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Spin The Wheel</title>
+      <script type="module" src="/src/main.ts" defer></script>
+      <link rel="stylesheet" href="/src/css/index.css" />
+   </head>
+   <body class="bg-dark-base text-white">
+      <section class="p-5">
+         <div class="container">
+            <div class="w-fit mx-auto bg-dark-elevated rounded-[28px]">
+               <div
+                  class="flex items-center justify-between px-8 py-4 border-b border-dark-deep"
+               >
+                  <h1 class="font-medium text-xl">Spin The Wheel</h1>
+                  <div class="">
+                     <h2 class="text-xs">Balance</h2>
+                     <p class="text-lg">1,250</p>
+                  </div>
+               </div>
+               <div class="px-8 py-6">
+                  <div class="relative w-100 disk-outer drop-shadow-wheel/25">
+                     <div class="absolute absolute-center-x -translate-y-1/2">
+                        <img src="/assets/images/arrow.png" alt="" />
+                     </div>
+                     <div class="disk-inner p-1.5">
+                        <canvas class="w-full h-full" id="wheel"> </canvas>
+                     </div>
+                     <button
+                        id="spin-button"
+                        class="p-1.5 absolute absolute-center w-27.5 disk-outer drop-shadow-md drop-shadow-black/25"
+                     >
+                        <div class="disk-inner content-center">
+                           <span class="font-bold text-2xl leading-none">
+                              Spin
+                           </span>
+                        </div>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </body>
+</html>
