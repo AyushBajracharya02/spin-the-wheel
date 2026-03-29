@@ -45,7 +45,9 @@ const r = canvas.width / 2;
 const NO_OF_SLICES = Math.min(
    Math.max(
       3,
-      parseInt(new URL(window.location.href).pathname.split("/")[1]) || 3,
+      parseInt(
+         new URLSearchParams(window.location.search).get("slices") || "3",
+      ),
    ),
    PRIZES.length,
 );
