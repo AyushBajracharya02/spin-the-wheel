@@ -1,16 +1,15 @@
 import { Circle } from "@/lib/circle";
 import type { Scene } from "@/types/scene";
 import type { Slice } from "./slice";
-import { easeOut, lerp, weightedRandom } from "@/utils";
-import { DEGREE_360, SLICED_PRIZES } from "@/constants";
+import { easeOut, lerp } from "@/utils";
+import { DEGREE_360 } from "@/constants";
 import type { Publisher as TPublisher } from "@/lib/pub-sub/types";
-import type { Prize } from "@/config";
 import type { Subscriber } from "@/lib/pub-sub/types";
 import { Publisher } from "@/lib/pub-sub";
 
-export class Wheel implements Scene, TPublisher<Prize> {
+export class Wheel implements Scene, TPublisher<null> {
    #circle: Circle;
-   #publisher: Publisher<Prize>;
+   #publisher: Publisher<null>;
    //rotated -90deg because pointer is at top
    #rotation = -DEGREE_360 / 4;
    #animation: "idle" | "spinning" = "idle";
@@ -20,13 +19,13 @@ export class Wheel implements Scene, TPublisher<Prize> {
       this.#publisher = new Publisher();
       if (slices) this.#slices = slices;
    }
-   subscribe(s: Subscriber<Prize>) {
+   subscribe(s: Subscriber<null>) {
       this.#publisher.subscribe(s);
    }
-   unsubscribe(s: Subscriber<Prize>) {
+   unsubscribe(s: Subscriber<null>) {
       this.#publisher.unsubscribe(s);
    }
-   publish(newState: Prize) {
+   publish(newState: null) {
       this.#publisher.publish(newState);
    }
    init(ctx: CanvasRenderingContext2D) {
@@ -44,27 +43,13 @@ export class Wheel implements Scene, TPublisher<Prize> {
       ctx.restore();
    }
    update?: ((deltaTime: number) => void) | undefined;
-   spin(duration: number): Promise<Prize> {
+   spin(rotation: number, duration: number) {
       if (this.#animation === "spinning")
          return Promise.reject("Wheel is still spinning");
 
-      const selectedPrizeIndex = weightedRandom(
-         SLICED_PRIZES.map((prize) => prize.weight),
-      );
-
-      const anglePerSlice = DEGREE_360 / SLICED_PRIZES.length;
-
-      const degreeOfSlice = anglePerSlice * selectedPrizeIndex;
-      const midAngle = degreeOfSlice + anglePerSlice / 2;
-      const targetRotation = -DEGREE_360 / 4 - midAngle;
-      const currentRotation = this.rotation % DEGREE_360;
-      const extraSpins = DEGREE_360 * 25;
-
-      // target relative to current rotation, not absolute 0
-      const rotation = targetRotation - currentRotation - extraSpins;
       this.#animation = "spinning";
 
-      return new Promise((resolve) => {
+      return new Promise<void>((resolve) => {
          this.update = (() => {
             let progress = 0;
             const startRotation = this.#rotation;
@@ -78,8 +63,8 @@ export class Wheel implements Scene, TPublisher<Prize> {
                if (progress === 1) {
                   this.#animation = "idle";
                   this.update = undefined;
-                  this.publish(SLICED_PRIZES[selectedPrizeIndex]);
-                  resolve(SLICED_PRIZES[selectedPrizeIndex]);
+                  this.publish(null);
+                  resolve();
                }
             };
          })();

@@ -4,6 +4,7 @@ import { Wheel } from "./scene/wheel";
 import { Slice } from "./scene/slice";
 import { DEGREE_360, SLICED_PRIZES } from "./constants";
 import SpinWheelAudioSrc from "/assets/audio/spinning-wheel.mp3";
+import { weightedRandom } from "./utils";
 
 const SpinWheelAudio = new Audio(SpinWheelAudioSrc);
 
@@ -94,25 +95,27 @@ if (!prizeDialog) {
 spinButton.addEventListener("click", async () => {
    if (wheel.animation === "spinning") return;
 
-   // const selectedPrizeIndex = weightedRandom(
-   //    SLICED_PRIZES.map((prize) => prize.weight),
-   // );
+   const selectedPrizeIndex = weightedRandom(
+      SLICED_PRIZES.map((prize) => prize.weight),
+   );
 
-   // console.log(SLICED_PRIZES[selectedPrizeIndex]);
+   const prize = SLICED_PRIZES[selectedPrizeIndex];
 
-   // const anglePerSlice = DEGREE_360 / SLICED_PRIZES.length;
+   console.log(prize);
 
-   // const degreeOfSlice = anglePerSlice * selectedPrizeIndex;
-   // const midAngle = degreeOfSlice + anglePerSlice / 2;
-   // const targetRotation = -DEGREE_360 / 4 - midAngle;
-   // const currentRotation = wheel.rotation % DEGREE_360;
-   // const extraSpins = DEGREE_360 * 25;
+   const anglePerSlice = DEGREE_360 / SLICED_PRIZES.length;
 
-   // // target relative to current rotation, not absolute 0
-   // const rotation = targetRotation - currentRotation - extraSpins;
+   const degreeOfSlice = anglePerSlice * selectedPrizeIndex;
+   const midAngle = degreeOfSlice + anglePerSlice / 2;
+   const targetRotation = -DEGREE_360 / 4 - midAngle;
+   const currentRotation = wheel.rotation % DEGREE_360;
+   const extraSpins = DEGREE_360 * 25;
+
+   // target relative to current rotation, not absolute 0
+   const rotation = targetRotation - currentRotation - extraSpins;
 
    SpinWheelAudio.play();
-   const prize = await wheel.spin(9000);
+   await wheel.spin(rotation, 9000);
    document.querySelector<HTMLImageElement>("#prize-image")!.src = prize.image;
    document.querySelector<HTMLParagraphElement>("#prize-message")!.innerText =
       prize.message;
