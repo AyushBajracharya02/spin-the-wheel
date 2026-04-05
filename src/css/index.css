@@ -34,3 +34,7 @@
 @utility disk-inner {
    @apply aspect-square bg-linear-112 from-dark-muted to-dark-surface rounded-full border border-dark-pitch;
 }
+
+@utility btn{
+   @apply py-2.5 text-xl min-w-45 bg-[#2D4F84] rounded-lg text-white;
+}

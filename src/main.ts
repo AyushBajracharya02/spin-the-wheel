@@ -2,9 +2,10 @@ import { Game } from "@/scene/game";
 import type { Input } from "@/types/input";
 import { Wheel } from "./scene/wheel";
 import { Slice } from "./scene/slice";
-import { PRIZES } from "./config";
-import { weightedRandom } from "./utils";
-import { DEGREE_360 } from "./constants";
+import { DEGREE_360, SLICED_PRIZES } from "./constants";
+import SpinWheelAudioSrc from "/assets/audio/spinning-wheel.mp3";
+
+const SpinWheelAudio = new Audio(SpinWheelAudioSrc);
 
 const canvas = document.querySelector<HTMLCanvasElement>("#wheel");
 if (!canvas) {
@@ -42,18 +43,6 @@ window.addEventListener("resize", resizeCanvas);
 const cx = canvas.width / 2;
 const cy = canvas.height / 2;
 const r = canvas.width / 2;
-
-const NO_OF_SLICES = Math.min(
-   Math.max(
-      3,
-      parseInt(
-         new URLSearchParams(window.location.search).get("slices") || "3",
-      ),
-   ),
-   PRIZES.length,
-);
-
-const SLICED_PRIZES = PRIZES.slice(0, NO_OF_SLICES);
 
 const wheel = new Wheel(
    cx,
@@ -96,23 +85,43 @@ if (!spinButton) {
    throw new Error(`spin button with id #spin-button not found`);
 }
 
-spinButton.addEventListener("click", () => {
+const prizeDialog = document.querySelector<HTMLDialogElement>("#prize-dialog");
+
+if (!prizeDialog) {
+   throw new Error(`Dialog with id #prize-dialog not found`);
+}
+
+spinButton.addEventListener("click", async () => {
    if (wheel.animation === "spinning") return;
-   const selectedPrizeIndex = weightedRandom(
-      SLICED_PRIZES.map((prize) => prize.weight),
-   );
 
-   const anglePerSlice = DEGREE_360 / SLICED_PRIZES.length;
+   // const selectedPrizeIndex = weightedRandom(
+   //    SLICED_PRIZES.map((prize) => prize.weight),
+   // );
 
-   const degreeOfSlice = anglePerSlice * selectedPrizeIndex;
-   const midAngle = degreeOfSlice + anglePerSlice / 2;
-   const targetRotation = -DEGREE_360 / 4 - midAngle;
-   const currentRotation = wheel.rotation % DEGREE_360;
-   const extraSpins = DEGREE_360 * 5;
+   // console.log(SLICED_PRIZES[selectedPrizeIndex]);
 
-   // target relative to current rotation, not absolute 0
-   const rotation = targetRotation - currentRotation - extraSpins;
-   wheel.spin(rotation);
+   // const anglePerSlice = DEGREE_360 / SLICED_PRIZES.length;
 
-   wheel.spin(rotation);
+   // const degreeOfSlice = anglePerSlice * selectedPrizeIndex;
+   // const midAngle = degreeOfSlice + anglePerSlice / 2;
+   // const targetRotation = -DEGREE_360 / 4 - midAngle;
+   // const currentRotation = wheel.rotation % DEGREE_360;
+   // const extraSpins = DEGREE_360 * 25;
+
+   // // target relative to current rotation, not absolute 0
+   // const rotation = targetRotation - currentRotation - extraSpins;
+
+   SpinWheelAudio.play();
+   const prize = await wheel.spin(9000);
+   document.querySelector<HTMLImageElement>("#prize-image")!.src = prize.image;
+   document.querySelector<HTMLParagraphElement>("#prize-message")!.innerText =
+      prize.message;
+
+   prizeDialog.showModal();
 });
+
+document
+   .querySelector<HTMLButtonElement>("#prize-dialog-close")
+   ?.addEventListener("click", () => {
+      prizeDialog.close();
+   });
