@@ -4,6 +4,7 @@ import { Wheel } from "./scene/wheel";
 import { Slice } from "./scene/slice";
 import { PRIZES } from "./config";
 import { weightedRandom } from "./utils";
+import { DEGREE_360 } from "./constants";
 
 const canvas = document.querySelector<HTMLCanvasElement>("#wheel");
 if (!canvas) {
@@ -64,8 +65,8 @@ const wheel = new Wheel(
             cx,
             cy,
             r,
-            i * ((Math.PI * 2) / SLICED_PRIZES.length),
-            (i + 1) * ((Math.PI * 2) / SLICED_PRIZES.length),
+            i * (DEGREE_360 / SLICED_PRIZES.length),
+            (i + 1) * (DEGREE_360 / SLICED_PRIZES.length),
             prize.color,
             prize.name,
          ),
@@ -101,13 +102,17 @@ spinButton.addEventListener("click", () => {
       SLICED_PRIZES.map((prize) => prize.weight),
    );
 
-   const degree360 = Math.PI * 2;
-   const degreePerSlice = degree360 / SLICED_PRIZES.length;
-   const midAngle = degreePerSlice * selectedPrizeIndex + degreePerSlice / 2;
-   const extraSpins = degree360 * 5;
+   const anglePerSlice = DEGREE_360 / SLICED_PRIZES.length;
+
+   const degreeOfSlice = anglePerSlice * selectedPrizeIndex;
+   const midAngle = degreeOfSlice + anglePerSlice / 2;
+   const targetRotation = -DEGREE_360 / 4 - midAngle;
+   const currentRotation = wheel.rotation % DEGREE_360;
+   const extraSpins = DEGREE_360 * 5;
 
    // target relative to current rotation, not absolute 0
-   const rotation = wheel.rotation - midAngle - Math.PI / 2 - extraSpins;
+   const rotation = targetRotation - currentRotation - extraSpins;
+   wheel.spin(rotation);
 
    wheel.spin(rotation);
 });

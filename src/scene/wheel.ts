@@ -2,9 +2,11 @@ import { Circle } from "@/lib/circle";
 import type { Scene } from "@/types/scene";
 import type { Slice } from "./slice";
 import { easeOut, lerp } from "@/utils";
+import { DEGREE_360 } from "@/constants";
 
 export class Wheel extends Circle implements Scene {
-   #rotation = 0;
+   //rotated -90deg because pointer is at top
+   #rotation = -DEGREE_360 / 4;
    #animation: "idle" | "spinning" = "idle";
    #slices: Slice[] = [];
    constructor(cx: number, cy: number, r: number, slices?: Slice[]) {
@@ -28,9 +30,6 @@ export class Wheel extends Circle implements Scene {
    update?: ((deltaTime: number) => void) | undefined;
    spin(rotation: number, duration: number = 5000) {
       if (this.#animation === "spinning") return;
-      // const additionalRotationPerMs = 0.005;
-      // const totalAdditionalRotation = duration * additionalRotationPerMs;
-      // const totalRotation = totalAdditionalRotation + rotation;
       this.#animation = "spinning";
       this.update = (() => {
          let progress = 0;
