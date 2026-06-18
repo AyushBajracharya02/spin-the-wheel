@@ -1,0 +1,512 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+   --breakpoint-3xl: 120rem;
+
+   --font-baloo-2: "Baloo 2";
+
+   --color-primary-50: #fff1f1;
+   --color-primary-100: #ffd7d9;
+   --color-primary-200: #ff9ea3;
+   --color-primary-300: #ff646c;
+   --color-primary-400: #ef2e39;
+   --color-primary-500: #b80f17;
+   --color-primary-600: #8f0b12;
+   --color-primary-700: #64070d;
+   --color-primary-800: #380308;
+   --color-primary-900: #1b0104;
+   --color-primary-950: #0a0001;
+
+   --color-secondary-50: #fff8dc;
+   --color-secondary-100: #fdeca3;
+   --color-secondary-200: #f8d35f;
+   --color-secondary-300: #f2b52a;
+   --color-secondary-400: #d49314;
+   --color-secondary-500: #a66d0d;
+   --color-secondary-600: #744807;
+   --color-secondary-700: #4a2904;
+   --color-secondary-800: #281303;
+   --color-secondary-900: #130701;
+   --color-secondary-950: #070200;
+
+   --color-accent-50: #fff4e6;
+   --color-accent-100: #ffd9a8;
+   --color-accent-200: #ffb15f;
+   --color-accent-300: #f97316;
+   --color-accent-400: #d9570b;
+   --color-accent-500: #a83d06;
+   --color-accent-600: #752605;
+   --color-accent-700: #4a1503;
+   --color-accent-800: #260902;
+   --color-accent-900: #120301;
+   --color-accent-950: #060100;
+
+   --color-dark-50: #ede7e2;
+   --color-dark-100: #c9b9aa;
+   --color-dark-200: #9e8067;
+   --color-dark-300: #6b402e;
+   --color-dark-400: #3b1712;
+   --color-dark-500: #160606;
+   --color-dark-600: #100303;
+   --color-dark-700: #0b0202;
+   --color-dark-800: #070101;
+   --color-dark-900: #050000;
+   --color-dark-950: #020000;
+
+   --color-light-50: #fffdf7;
+   --color-light-100: #fff8e8;
+   --color-light-200: #fff2d0;
+   --color-light-300: #f3d99c;
+   --color-light-400: #d2b06b;
+   --color-light-500: #a8967a;
+   --color-light-600: #766653;
+   --color-light-700: #4b4035;
+   --color-light-800: #29231d;
+   --color-light-900: #15110e;
+   --color-light-950: #090706;
+
+   --color-success-50: #ecfdf3;
+   --color-success-100: #bbf7d0;
+   --color-success-200: #86efac;
+   --color-success-300: #4ade80;
+   --color-success-400: #22c55e;
+   --color-success-500: #16a34a;
+   --color-success-600: #15803d;
+   --color-success-700: #166534;
+   --color-success-800: #14532d;
+   --color-success-900: #052e16;
+   --color-success-950: #021a0c;
+
+   /* ==========================================================================
+     PINK PALETTE (Core CTAs, Primary Action Buttons, Badges)
+     ========================================================================== */
+   --color-pink-300: #ff7fd4; /* Text badges / "YOU" labels */
+   --color-pink-400: #ff6fce; /* Gradient top for primary active buttons */
+   --color-pink-500: #ff5fc4; /* Standard pink highlights */
+   --color-pink-600: #e84cc4; /* Default core theme button accent */
+   --color-pink-700: #d62a9e; /* Deep button gradient / active states */
+   --color-pink-800: #c92aa0; /* Dark border shadow boundary for CTAs */
+
+   /* ==========================================================================
+     GOLD / YELLOW PALETTE (Prizes, Tickets, Star Fields, Wins)
+     ========================================================================== */
+   --color-gold-100: #fff6da; /* Star & inner graphic highlights */
+   --color-gold-200: #ffe9b8; /* Ticket text balances */
+   --color-gold-300: #ffd479; /* Core text highlights ("You Won" / Ticket glyphs) */
+   --color-gold-400: #ffc457; /* Mid-gradient fill on pointer */
+   --color-gold-500: #f5a623; /* Pointer base, Hub core, gold text */
+   --color-gold-600: #e8b321; /* Deep badge radial gradient */
+   --color-gold-700: #cf6f12; /* Segment edge / secondary shadows */
+   --color-gold-800: #b3801a; /* Ticket/Coin stroke outlines */
+   --color-gold-900: #7a5410; /* Text labels overlaying gold backgrounds */
+
+   /* ==========================================================================
+     SUCCESS GREEN PALETTE (Cash Prizes, Live Indicators, Free Spins)
+     ========================================================================== */
+   --color-green-300: #6ff0a0; /* Bright Green / Free Spins gradient top */
+   --color-green-400: #54e08a; /* Live indicator / bonus message text */
+   --color-green-500: #2fc46e; /* Core green background */
+   --color-green-600: #2f9e57; /* Cash badge background / container fill */
+   --color-green-700: #1c8a4a; /* SVG FS stroke path boundary */
+   --color-green-800: #149048; /* Bottom depth color for green surfaces */
+
+   /* ==========================================================================
+     INFO BLUE PALETTE (Points Segments, Lower-tier Assets)
+     ========================================================================== */
+   --color-blue-400: #3a93d6; /* Points segment core background */
+   --color-blue-500: #2f7fc9; /* Secondary blue segment background */
+   --color-blue-600: #2b76b3; /* Blue segment edge border */
+   --color-blue-700: #1d4a8a; /* Blue variations theme top gradient */
+
+   /* ==========================================================================
+     NEUTRAL DEEP / SYSTEM DARK PALETTE (App Backgrounds, Wheels, Empty states)
+     ========================================================================== */
+   --color-neutral-100: #ffffff; /* Universal crisp headers, body text, bold weights */
+   --color-neutral-200: #f0e8ff; /* Subtext on standard feed layouts */
+   --color-neutral-400: #9a86c4; /* Muted scrollbars, secondary empty descriptors */
+   --color-neutral-650: #8f6b50; /* No-Bonus element subtle edge fills */
+   --color-neutral-700: #7a5a44; /* Empty/Box segment header graphic */
+   --color-neutral-750: #5c4332; /* Empty/Box segment structural line borders */
+   --color-neutral-800: #1a0e36; /* Dark bottom fallback gradients */
+   --color-neutral-850: #16223f; /* No-bonus dark segment core color */
+   --color-neutral-900: #120730; /* Main app canvas layout backdrop background */
+   --color-neutral-950: #0f1830; /* Deep wheel segment interiors and shadows */
+
+   /* ==========================================================================
+     THEMATIC THEME VARIANT BACKDROPS (Tweak Options)
+     ========================================================================== */
+   --color-theme-purple-bg: #2e1160;
+   --color-theme-blue-bg: #13294d;
+   --color-theme-red-bg: #5e1230;
+   --color-theme-green-bg: #0e2e26;
+
+   /* ==========================================================================
+     SEMANTIC COMPONENT WRAPPERS (Consolidated Shadows and Borders)
+     ========================================================================== */
+   --border-light-alpha: rgba(255, 255, 255, 0.12);
+   --border-mid-alpha: rgba(255, 255, 255, 0.18);
+   --color-overlay-backdrop: rgba(20, 4, 38);
+
+   --shadow-pink-glow: rgba(201, 42, 160, 0.45);
+   --shadow-purple-glow: rgba(123, 31, 184, 0.5);
+   --shadow-gold-glow: rgba(212, 118, 15, 0.5);
+   --shadow-green-glow: rgba(20, 144, 72, 0.5);
+
+   --radial-gradient-1:
+      120% 70% at 50% 8%, var(--color-primary-900) 0%,
+      var(--color-theme-purple-bg) 38%, var(--color-neutral-800) 70%,
+      var(--color-neutral-900) 100%;
+   --radial-gradient-2:
+      75% 75% at 50% 32%, var(--color-primary-400) 0%,
+      var(--color-primary-600) 55%, var(--color-primary-800) 100%;
+   --radial-gradient-3:
+      70% 70% at 40% 35%, var(--color-primary-100) 0%,
+      var(--color-primary-700) 100%;
+   --radial-gradient-4:
+      72% 72% at 42% 34%, var(--color-gold-300) 0%, var(--color-gold-500) 48%,
+      var(--color-gold-700) 100%;
+
+   --repeating-conic-gradient-1: repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      #3c0a0a 0deg 7deg,
+      #170404 7deg 14deg
+   );
+
+   --ray-gradient:
+      circle at 50% 50%, rgba(7, 4, 3, 0) 0%, rgba(7, 4, 3, 0.35) 42%,
+      rgba(7, 4, 3, 0.85) 66%, #070403 86%;
+
+   --radial-mask-1: circle at 50% 50%, rgb(0, 0, 0) 8%, transparent 80%;
+
+   --linear-gradient-1: var(--color-primary-500), var(--color-primary-700);
+   --linear-gradient-2:
+      var(--color-pink-400) 0%, var(--color-pink-600) 48%,
+      var(--color-pink-800) 100%;
+   --linear-gradient-3: var(--color-primary-950), var(--color-neutral-800);
+
+   --text-shadow-1:
+      --alpha(var(--color-gold-900)/0.55) 0px 2px 0px,
+      --alpha(var(--color-gold-400)/0.5) 0px 0px 14px;
+
+   --metallic-gold:
+      var(--color-secondary-100), var(--color-secondary-300),
+      var(--color-secondary-500), var(--color-secondary-600),
+      var(--color-secondary-500), var(--color-secondary-300),
+      var(--color-secondary-100), var(--color-secondary-300),
+      var(--color-secondary-500), var(--color-secondary-600),
+      var(--color-secondary-500), var(--color-secondary-300),
+      var(--color-secondary-100), var(--color-secondary-300),
+      var(--color-secondary-500), var(--color-secondary-600),
+      var(--color-secondary-500), var(--color-secondary-300),
+      var(--color-secondary-100), var(--color-secondary-300),
+      var(--color-secondary-500), var(--color-secondary-600),
+      var(--color-secondary-500), var(--color-secondary-300),
+      var(--color-secondary-100);
+
+   --shadow-bulb:
+      0px 0px 12px var(--color-secondary-50), inset 0 2px 3px rgba(0, 0, 0, 0.5);
+
+   --animate-rotate: rotate 60s linear infinite;
+   @keyframes rotate {
+      100% {
+         rotate: 360deg;
+      }
+   }
+}
+
+@utility container {
+   @apply mx-auto px-5 3xl:max-w-[1840px];
+}
+
+@layer base {
+   button {
+      &:not(:disabled) {
+         @apply cursor-pointer;
+      }
+   }
+}
+
+@utility btn {
+   @apply px-6.5 py-4 text-2xl leading-none rounded-2xl font-extrabold;
+}
+
+@utility btn-primary {
+   @apply relative shadow-[--alpha(var(--color-primary-700)/0.5)_0px_4px_12px] text-white bg-conic-(--metallic-gold) z-0;
+   @apply after:absolute after:rounded-xl after:inset-0.75 after:bg-linear-180 after:bg-linear-(--linear-gradient-1) after:-z-1;
+}
+
+@utility btn-pink {
+   @apply bg-linear-180 bg-linear-(--linear-gradient-2) text-white;
+   box-shadow:
+      var(--shadow-pink-glow) 0px 8px 20px,
+      rgba(255, 255, 255, 0.45) 0px 2px 0px inset,
+      rgba(150, 10, 110, 0.4) 0px -3px 8px inset;
+}
+
+@utility btn-glass {
+   @apply bg-white/7 text-white border-2 border-primary-500/45;
+}
+
+@utility btn-lg {
+   @apply py-3 text-lg;
+}
+
+@utility btn-xl {
+   @apply py-5 text-3xl;
+}
+
+@utility dialog {
+   @apply border border-secondary-400 backdrop:bg-overlay-backdrop/74 backdrop:backdrop-blur-xs bg-linear-(--linear-gradient-3) w-full h-full max-h-none;
+}
+
+@utility dialog-center {
+   @apply left-1/2 top-1/2 -translate-1/2 max-w-110 p-7 rounded-[26px] h-fit!;
+}
+
+@utility dialog-close {
+   @apply absolute w-8.5 aspect-square text-center content-center border border-white/18 bg-white/6 text-primary-200 text-lg rounded-full top-3.5 right-3.5 before:content-['×'];
+}
+
+@utility absolute-center {
+   @apply absolute left-1/2 top-1/2 -translate-1/2;
+}
+
+.casino-red-btn {
+   @apply relative isolate overflow-hidden rounded-full px-10 py-4 text-light-50 font-extrabold uppercase tracking-wide;
+
+   border: 2px solid transparent;
+
+   background:
+      linear-gradient(
+            180deg,
+            var(--color-primary-300) 0%,
+            var(--color-primary-500) 42%,
+            var(--color-primary-700) 100%
+         )
+         padding-box,
+      linear-gradient(
+            135deg,
+            var(--color-light-100) 0%,
+            var(--color-secondary-300) 28%,
+            var(--color-secondary-600) 58%,
+            var(--color-secondary-100) 78%,
+            var(--color-secondary-500) 100%
+         )
+         border-box;
+
+   box-shadow:
+      inset 0 2px 0 rgb(255 255 255 / 0.35),
+      inset 0 -6px 12px rgb(56 3 8 / 0.7),
+      0 0 18px rgb(184 15 23 / 0.8),
+      0 0 32px rgb(242 181 42 / 0.35);
+}
+
+.casino-red-btn::before {
+   content: "";
+   @apply absolute inset-x-4 top-1 h-[35%] rounded-full pointer-events-none;
+
+   background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.55),
+      rgb(255 255 255 / 0.05)
+   );
+}
+
+.casino-red-btn::after {
+   content: "";
+   @apply absolute -top-8 -right-6 h-20 w-24 rounded-full pointer-events-none;
+
+   background: radial-gradient(
+      circle,
+      var(--color-light-50) 0%,
+      rgb(242 181 42 / 0.75) 28%,
+      transparent 68%
+   );
+
+   filter: blur(1px);
+   transform: rotate(18deg);
+   mix-blend-mode: screen;
+}
+
+.casino-red-btn:hover {
+   box-shadow:
+      inset 0 2px 0 rgb(255 255 255 / 0.45),
+      inset 0 -6px 12px rgb(56 3 8 / 0.75),
+      0 0 22px rgb(184 15 23 / 0.95),
+      0 0 42px rgb(242 181 42 / 0.45);
+}
+
+.wheel-gold-ring {
+   @apply relative rounded-full;
+
+   background:
+      radial-gradient(
+         circle at 30% 20%,
+         var(--color-light-50) 0%,
+         var(--color-secondary-100) 8%,
+         transparent 24%
+      ),
+      conic-gradient(
+         from 20deg,
+         var(--color-secondary-600) 0deg,
+         var(--color-secondary-300) 42deg,
+         var(--color-light-100) 72deg,
+         var(--color-secondary-400) 112deg,
+         var(--color-secondary-700) 160deg,
+         var(--color-secondary-200) 218deg,
+         var(--color-secondary-500) 286deg,
+         var(--color-secondary-100) 330deg,
+         var(--color-secondary-600) 360deg
+      );
+
+   box-shadow:
+      inset 0 3px 4px rgb(255 255 255 / 0.45),
+      inset 0 -10px 18px rgb(74 41 4 / 0.7),
+      0 0 18px rgb(242 181 42 / 0.65),
+      0 0 44px rgb(166 109 13 / 0.45);
+}
+
+.wheel-gold-ring::after {
+   content: "";
+   @apply absolute inset-2 rounded-full pointer-events-none;
+
+   border: 1px solid rgb(255 248 220 / 0.45);
+
+   box-shadow:
+      inset 0 0 12px rgb(255 248 220 / 0.4),
+      0 0 10px rgb(242 181 42 / 0.45);
+}
+
+.promo-red-frame {
+   @apply relative isolate overflow-hidden rounded-2xl p-[2px];
+
+   background: linear-gradient(
+      135deg,
+      var(--color-secondary-200) 0%,
+      var(--color-primary-400) 18%,
+      var(--color-primary-700) 48%,
+      var(--color-secondary-300) 78%,
+      var(--color-secondary-600) 100%
+   );
+
+   box-shadow:
+      0 0 18px rgb(184 15 23 / 0.8),
+      0 0 28px rgb(242 181 42 / 0.35);
+}
+
+.promo-red-frame::before {
+   content: "";
+   @apply absolute inset-0 pointer-events-none;
+
+   background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.18), transparent 38%),
+      radial-gradient(
+         circle at 50% 0%,
+         rgb(255 248 220 / 0.35),
+         transparent 45%
+      );
+}
+
+.promo-red-inner {
+   @apply relative rounded-2xl px-6 py-5 text-center;
+
+   background: linear-gradient(
+      180deg,
+      var(--color-primary-600) 0%,
+      var(--color-primary-800) 45%,
+      var(--color-dark-900) 100%
+   );
+
+   box-shadow:
+      inset 0 2px 0 rgb(255 255 255 / 0.18),
+      inset 0 -8px 18px rgb(5 0 0 / 0.7);
+}
+
+@layer components {
+   .wheel-bulbs {
+      @apply absolute inset-0 rounded-full pointer-events-none;
+   }
+
+   .wheel-bulb {
+      background: radial-gradient(
+         circle at 35% 28%,
+         var(--color-light-50) 0%,
+         var(--color-secondary-100) 18%,
+         var(--color-secondary-300) 45%,
+         var(--color-secondary-500) 72%,
+         var(--color-secondary-700) 100%
+      );
+
+      border: 1px solid rgb(255 248 220 / 0.85);
+
+      box-shadow:
+         inset 0 1px 2px rgb(255 255 255 / 0.75),
+         inset 0 -2px 4px rgb(74 41 4 / 0.65),
+         0 0 8px rgb(242 181 42 / 0.85),
+         0 0 16px rgb(242 181 42 / 0.45);
+
+      animation: wheel-bulb-glow 1.8s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 0.07s);
+   }
+
+   .wheel-bulb::before {
+      content: "";
+      @apply absolute rounded-full pointer-events-none;
+
+      inset: 18% 22% 52% 22%;
+
+      background: rgb(255 255 255 / 0.85);
+      filter: blur(0.5px);
+   }
+
+   .wheel-bulb::after {
+      content: "";
+      @apply absolute inset-[-6px] rounded-full pointer-events-none;
+
+      background: radial-gradient(
+         circle,
+         rgb(242 181 42 / 0.55) 0%,
+         rgb(242 181 42 / 0.18) 42%,
+         transparent 72%
+      );
+
+      opacity: 0.75;
+      animation: wheel-bulb-halo 1.8s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 0.07s);
+   }
+}
+
+@keyframes wheel-bulb-glow {
+   0%,
+   100% {
+      filter: brightness(0.9);
+      box-shadow:
+         inset 0 1px 2px rgb(255 255 255 / 0.65),
+         inset 0 -2px 4px rgb(74 41 4 / 0.65),
+         0 0 6px rgb(242 181 42 / 0.65),
+         0 0 12px rgb(242 181 42 / 0.3);
+   }
+
+   50% {
+      filter: brightness(1.35);
+      box-shadow:
+         inset 0 1px 2px rgb(255 255 255 / 0.95),
+         inset 0 -2px 4px rgb(74 41 4 / 0.55),
+         0 0 12px rgb(255 248 220 / 0.95),
+         0 0 26px rgb(242 181 42 / 0.75);
+   }
+}
+
+@keyframes wheel-bulb-halo {
+   0%,
+   100% {
+      opacity: 0.35;
+      transform: scale(0.9);
+   }
+
+   50% {
+      opacity: 0.9;
+      transform: scale(1.18);
+   }
+}
