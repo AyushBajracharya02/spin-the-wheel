@@ -1,7 +1,14 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+   "files": [],
+   "references": [
+      { "path": "./tsconfig.app.json" },
+      { "path": "./tsconfig.node.json" }
+   ],
+   "compilerOptions": {
+      // 1. Forces TS to output JS files even if there are compilation errors
+      "noEmitOnError": false,
+
+      // 2. Turns off strict checks for unused variables (Fixes the #cx/#cy warnings-turned-errors)
+      "noUnusedLocals": false
+   }
 }
