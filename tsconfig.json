@@ -3,9 +3,5 @@
    "references": [
       { "path": "./tsconfig.app.json" },
       { "path": "./tsconfig.node.json" }
-   ],
-   "compilerOptions": {
-      // 2. Turns off strict checks for unused variables (Fixes the #cx/#cy warnings-turned-errors)
-      "noUnusedLocals": false
-   }
+   ]
 }
