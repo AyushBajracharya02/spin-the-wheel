@@ -21,6 +21,7 @@ export default function App() {
       "live-wins",
    );
 
+   const wheelBeltRef = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement>(null);
    const ctxRef = useRef<CanvasRenderingContext2D>(null);
    const wheelRef = useRef<Wheel>(null);
@@ -29,6 +30,33 @@ export default function App() {
    const inputRef = useRef<Input>({});
 
    const [wonPrize, setWonPrize] = useState<Prize | null>(null);
+
+   const [wheelPosition, setWheelPosition] = useState({
+      "--x": "50%",
+      "--y": "50%",
+   });
+
+   useEffect(() => {
+      const updatePosition = () => {
+         if (wheelBeltRef.current) {
+            const { left, top, width, height } =
+               wheelBeltRef.current.getBoundingClientRect();
+
+            setWheelPosition({
+               "--x": `${left + width / 2}px`,
+               "--y": `${top + height / 2}px`,
+            });
+         }
+      };
+
+      updatePosition();
+
+      window.addEventListener("resize", updatePosition);
+
+      return () => {
+         window.removeEventListener("resize", updatePosition);
+      };
+   }, []);
 
    const handleSpinButtonPress = useCallback(async () => {
       const wheel = wheelRef.current;
@@ -158,7 +186,7 @@ export default function App() {
          <div className="min-h-dvh flex flex-col">
             <header className="py-3">
                <div className="container">
-                  <nav className="flex gap-5 items-center">
+                  <nav className="flex max-sm:gap-2 gap-5 items-center">
                      <a
                         href="./"
                         className="mr-auto w-28/100"
@@ -234,10 +262,14 @@ export default function App() {
                         </div>
                      </div>
                      <div className="max-lg:row-start-2 max-xl:col-span-1 max-2xl:col-span-5 max-3xl:col-span-4 col-span-7 row-span-2">
-                        <WheelBelt className="max-3xl:p-5.5 p-7 relative @container max-lg:-mt-4 max-xl:-mt-16 -mt-10">
-                           <div className="absolute-center w-[125dvw] h-screen scale-110 -z-1 overflow-hidden">
-                              <div className="bg-(image:--repeating-conic-gradient-1) mask-radial-(--radial-mask-1) animate-rotate w-[125dvw] aspect-square absolute-center"></div>
-                           </div>
+                        <WheelBelt
+                           className="max-xs:p-[clamp(8px,2.5vw,22px)] max-3xl:p-5.5 p-7 relative @container max-lg:-mt-4 max-xl:-mt-16 -mt-10"
+                           ref={wheelBeltRef}
+                        >
+                           <div
+                              className="animate-conic-rotate mask-radial-(--radial-mask-1) inset-0 fixed -z-1"
+                              style={wheelPosition}
+                           ></div>
                            {Array.from({ length: 20 }).map((_, i, arr) => (
                               <Bulb
                                  className="w-[3.25cqw] absolute left-1/2 top-3 -translate-1/2 origin-[center_calc(50cqw+3.25cqw*1.25)] rotate-(--angle)"

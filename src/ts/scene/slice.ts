@@ -61,7 +61,7 @@ export class Slice implements Scene {
       ctx.fillText(this.#label, 0, 0);
 
       if (this.#imageInstance && this.#imageInstance.complete) {
-         const imgW = 50;
+         const imgW = Math.max(25, Math.min(50, ctx.canvas.width * 0.1));
          const imgH =
             (this.#imageInstance.height * imgW) / this.#imageInstance.width; // Adjusted to a square 50x50, or match your preferred aspect ratio
 
