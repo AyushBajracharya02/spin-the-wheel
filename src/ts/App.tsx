@@ -166,18 +166,16 @@ export default function App() {
                      >
                         <img src="/images/logo-transparent.png" alt="" />
                      </a>
-                     <div className="bg-conic-(--metallic-gold) p-0.75 rounded-2xl">
-                        <div className="flex items-center gap-3 py-3.25 px-5.75 bg-black rounded-xl">
-                           <div className="w-8">
-                              <img
-                                 className="w-full"
-                                 src="/images/ticket.svg"
-                                 alt=""
-                              />
-                           </div>
-                           <div className="font-extrabold text-gold-200 text-2xl leading-none">
-                              8
-                           </div>
+                     <div className="bg-conic-(--metallic-gold) p-btn rounded-2xl flex items-center gap-3 relative after:absolute after:rounded-xl after:inset-0.75 after:bg-black after:-z-1 z-0">
+                        <div className="max-xl:w-4 w-8">
+                           <img
+                              className="w-full"
+                              src="/images/ticket.svg"
+                              alt=""
+                           />
+                        </div>
+                        <div className="font-extrabold text-gold-200 text-btn leading-none">
+                           8
                         </div>
                      </div>
                      <button
@@ -190,23 +188,23 @@ export default function App() {
                   </nav>
                </div>
             </header>
-            <main className="grow grid">
+            <main className="grow grid max-xl:mt-5">
                <div className="container grid">
-                  <div className="grid grid-cols-19 items-start">
-                     <div className="max-2xl:col-span-4 col-span-3">
+                  <div className="grid max-lg:grid-cols-1 max-xl:grid-cols-2 max-xl:gap-y-0 max-xl:gap-x-8 max-3xl:gap-11 max-3xl:grid-cols-11 grid-cols-19 items-start grid-rows-[auto_1fr]">
+                     <div className="max-xl:col-span-1 max-3xl:col-span-2 col-span-3">
                         <div className="relative">
-                           <div className="border-10 rounded-[28px] border-primary-700 w-fit relative">
-                              <div className="absolute left-1/2 -translate-x-1/2 bottom-full ">
+                           <div className="border-10 rounded-[28px] border-primary-700 w-fit relative max-xl:mx-auto">
+                              <div className="absolute left-1/2 -translate-x-1/2 bottom-full w-35/100">
                                  <img src="/images/crown.png" alt="" />
                               </div>
                               <div className="bg-primary-900/50 px-4 py-5 backdrop-blur-sm rounded-[18px]">
-                                 <div className="text-center text-2xl font-bold">
+                                 <div className="text-center max-3xl:text-lg text-2xl font-bold leading-[1.2]">
                                     <p>SPIN TO</p>
                                  </div>
-                                 <div className="text-center text-5xl font-extrabold drop-shadow drop-shadow-primary-500 bg-linear-180 from-secondary-200 to-secondary-400 bg-clip-text text-transparent mt-2">
+                                 <div className="text-center max-3xl:text-4xl text-5xl font-extrabold drop-shadow drop-shadow-primary-500 bg-linear-180 from-secondary-200 to-secondary-400 bg-clip-text text-transparent max-3xl:mt-1 mt-2 leading-[1.2]">
                                     <p>WIN BIG</p>
                                  </div>
-                                 <div className="text-center text-2xl font-bold mt-3">
+                                 <div className="text-center max-3xl:text-lg text-2xl font-bold max-3xl:mt-2 mt-3 leading-[1.2]">
                                     <p>
                                        LUCK IS ON
                                        <br />
@@ -215,32 +213,34 @@ export default function App() {
                                  </div>
                               </div>
                            </div>
-                           <div className="absolute inset-0 grid grid-cols-[repeat(auto-fill,10px)] grid-rows-[repeat(auto-fill,10px)] justify-between content-between">
-                              {/* {getRoundedRectPointsTopLeft(284, 224, 28, 20).map(
-                                 ({ x, y }) => (
-                                    <Bulb
-                                       className="w-2 absolute top-(--top) left-(--left)"
-                                       style={{
-                                          "--left": `${x}px`,
-                                          "--top": `${y}px`,
-                                       }}
-                                    />
-                                 ),
-                              )} */}
-                           </div>
+                           {/* <div className="absolute inset-0 grid grid-cols-[repeat(auto-fill,10px)] grid-rows-[repeat(auto-fill,10px)] justify-between content-between">
+                              {getRoundedRectPointsTopLeft(284, 224, 28, 20).map(
+                                    ({ x, y }) => (
+                                       <Bulb
+                                          className="w-2 absolute top-(--top) left-(--left)"
+                                          style={{
+                                             "--left": `${x}px`,
+                                             "--top": `${y}px`,
+                                          }}
+                                       />
+                                    ),
+                                 )}
+                           </div> */}
                         </div>
-                        <div className="mt-9 -ml-7 drop-shadow-lg drop-shadow-primary-900">
+                     </div>
+                     <div className="max-lg:mt-8 max-xl:col-span-1 max-3xl:col-span-2 col-span-3 max-xl:row-start-auto row-start-2">
+                        <div className="max-xl:mt-0 mt-9 max-xl:mx-auto -ml-7 drop-shadow-lg drop-shadow-primary-900 max-xl:w-42/100">
                            <img src="/images/chips-and-cards-2.png" alt="" />
                         </div>
                      </div>
-                     <div className="col-span-7 -mt-10">
-                        <WheelBelt className="p-7 relative @container">
-                           <div className="absolute-center w-[125dvw] h-screen -z-1 overflow-hidden">
+                     <div className="max-lg:row-start-2 max-xl:col-span-1 max-2xl:col-span-5 max-3xl:col-span-4 col-span-7 row-span-2">
+                        <WheelBelt className="max-3xl:p-5.5 p-7 relative @container max-lg:-mt-4 max-xl:-mt-16 -mt-10">
+                           <div className="absolute-center w-[125dvw] h-screen scale-110 -z-1 overflow-hidden">
                               <div className="bg-(image:--repeating-conic-gradient-1) mask-radial-(--radial-mask-1) animate-rotate w-[125dvw] aspect-square absolute-center"></div>
                            </div>
                            {Array.from({ length: 20 }).map((_, i, arr) => (
                               <Bulb
-                                 className="w-4.5 absolute left-1/2 top-3 -translate-1/2 origin-[center_calc(50cqw+23px)] rotate-(--angle)"
+                                 className="w-[3.25cqw] absolute left-1/2 top-3 -translate-1/2 origin-[center_calc(50cqw+3.25cqw*1.25)] rotate-(--angle)"
                                  style={{
                                     "--angle": `${(360 / arr.length) * i + 360 / arr.length / 2}deg`,
                                  }}
@@ -293,67 +293,69 @@ export default function App() {
                            </p>
                         </div>
                      </div>
-                     <div className="-col-start-8 col-span-7 bg-primary-900/50 backdrop-blur-sm shadow-[var(--color-neutral-950)_0px_20px_50px] py-6.5 px-9 border-2 border-secondary-500 rounded-3xl">
-                        <div className="mb-2.5 p-px bg-conic-(--metallic-gold) rounded-2xl">
-                           <div
-                              className="p-0.5 bg-primary-900 flex gap-1.5 rounded-2xl"
-                              role="tablist"
-                           >
-                              <button
-                                 role="tab"
-                                 aria-selected={activeTab === "live-wins"}
-                                 className="z-1 not-aria-selected:text-white/40 transition-all duration-300 btn grow aria-selected:btn-primary flex items-center justify-center"
-                                 onClick={() => setActiveTab("live-wins")}
+                     <div className="max-xl:col-span-1 max-3xl:col-span-4 -col-end-1! col-span-7 row-span-2">
+                        <div className="bg-primary-900/50 backdrop-blur-sm shadow-[var(--color-neutral-950)_0px_20px_50px] max-xl:py-2 py-6.5 max-xl:px-4 px-9 border-2 border-secondary-500 rounded-3xl max-xl:-mt-10">
+                           <div className="mb-2.5 p-px bg-conic-(--metallic-gold) rounded-2xl">
+                              <div
+                                 className="p-0.5 bg-primary-900 flex gap-1.5 rounded-2xl"
+                                 role="tablist"
                               >
-                                 Live Wins
-                                 <div className="inline-block relative ml-2">
-                                    <div className="absolute inset-0 bg-green-400 rounded-full w-2 aspect-square animate-ping"></div>
-                                    <div className="bg-green-400 shadow-[var(--color-green-400)_0px_0px_8px] rounded-full w-2 aspect-square"></div>
-                                 </div>
-                              </button>
-                              <button
-                                 role="tab"
-                                 aria-selected={activeTab === "user-wins"}
-                                 className="z-1 not-aria-selected:text-white/40 transition-all duration-300 btn grow aria-selected:btn-primary"
-                                 onClick={() => setActiveTab("user-wins")}
-                              >
-                                 My Wins
-                              </button>
+                                 <button
+                                    role="tab"
+                                    aria-selected={activeTab === "live-wins"}
+                                    className="z-1 not-aria-selected:text-white/40 transition-all duration-300 btn grow aria-selected:btn-primary flex items-center justify-center"
+                                    onClick={() => setActiveTab("live-wins")}
+                                 >
+                                    Live Wins
+                                    <div className="inline-block relative ml-2">
+                                       <div className="absolute inset-0 bg-green-400 rounded-full w-2 aspect-square animate-ping"></div>
+                                       <div className="bg-green-400 shadow-[var(--color-green-400)_0px_0px_8px] rounded-full w-2 aspect-square"></div>
+                                    </div>
+                                 </button>
+                                 <button
+                                    role="tab"
+                                    aria-selected={activeTab === "user-wins"}
+                                    className="z-1 not-aria-selected:text-white/40 transition-all duration-300 btn grow aria-selected:btn-primary"
+                                    onClick={() => setActiveTab("user-wins")}
+                                 >
+                                    My Wins
+                                 </button>
+                              </div>
                            </div>
-                        </div>
-                        <div className="" hidden={activeTab !== "live-wins"}>
-                           <WinRow
-                              name="Manju"
-                              time="Just Now"
-                              prize={"Apple Air Pods"}
-                           />
-                           <WinRow
-                              name="Manju"
-                              time="Just Now"
-                              prize={"Apple Air Pods"}
-                           />
-                           <WinRow
-                              name="Manju"
-                              time="Just Now"
-                              prize={"Apple Air Pods"}
-                           />
-                           <WinRow
-                              name="Manju"
-                              time="Just Now"
-                              prize={"Apple Air Pods"}
-                           />
-                           <WinRow
-                              name="Manju"
-                              time="Just Now"
-                              prize={"Apple Air Pods"}
-                           />
-                        </div>
-                        <div className="" hidden={activeTab !== "user-wins"}>
-                           <WinRow
-                              name="You"
-                              time="1 min ago"
-                              prize={"Apple Air Pods"}
-                           />
+                           <div className="" hidden={activeTab !== "live-wins"}>
+                              <WinRow
+                                 name="Manju"
+                                 time="Just Now"
+                                 prize={"Apple Air Pods"}
+                              />
+                              <WinRow
+                                 name="Manju"
+                                 time="Just Now"
+                                 prize={"Apple Air Pods"}
+                              />
+                              <WinRow
+                                 name="Manju"
+                                 time="Just Now"
+                                 prize={"Apple Air Pods"}
+                              />
+                              <WinRow
+                                 name="Manju"
+                                 time="Just Now"
+                                 prize={"Apple Air Pods"}
+                              />
+                              <WinRow
+                                 name="Manju"
+                                 time="Just Now"
+                                 prize={"Apple Air Pods"}
+                              />
+                           </div>
+                           <div className="" hidden={activeTab !== "user-wins"}>
+                              <WinRow
+                                 name="You"
+                                 time="1 min ago"
+                                 prize={"Apple Air Pods"}
+                              />
+                           </div>
                         </div>
                      </div>
                   </div>

@@ -56,7 +56,8 @@ export class Slice implements Scene {
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = "bold 24px 'Baloo 2'";
+
+      ctx.font = `bold ${Math.max(10, Math.min(28, ctx.canvas.width * 0.03))}px 'Baloo 2'`;
       ctx.fillText(this.#label, 0, 0);
 
       if (this.#imageInstance && this.#imageInstance.complete) {
@@ -64,7 +65,7 @@ export class Slice implements Scene {
          const imgH =
             (this.#imageInstance.height * imgW) / this.#imageInstance.width; // Adjusted to a square 50x50, or match your preferred aspect ratio
 
-         const verticalGap = 50; // Distance in pixels down from the text center line
+         const verticalGap = Math.max(14, Math.min(50, ctx.canvas.width * 0.05)); // Distance in pixels down from the text center line
 
          /* CRITICAL: 
            Canvas images anchor from their top-left corner by default.
