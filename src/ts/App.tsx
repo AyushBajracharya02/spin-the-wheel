@@ -11,6 +11,19 @@ import Bulb from "./components/bulb";
 import WheelBelt from "./components/wheel-belt";
 import type { Prize } from "./config";
 
+const names = [
+   "Ayush",
+   "Masum",
+   "Ares",
+   "Kripa",
+   "Nazma",
+   "Prakriti",
+   "Amar",
+   "Sayal",
+   "DB",
+   "Sudarsan",
+];
+
 const resizeCanvas = (canvas: HTMLCanvasElement) => {
    canvas.width = canvas.parentElement?.clientWidth ?? canvas.width;
    canvas.height = canvas.parentElement?.clientHeight ?? canvas.height;
@@ -355,31 +368,13 @@ export default function App() {
                               </div>
                            </div>
                            <div className="" hidden={activeTab !== "live-wins"}>
-                              <WinRow
-                                 name="Manju"
-                                 time="Just Now"
-                                 prize={"Apple Air Pods"}
-                              />
-                              <WinRow
-                                 name="Manju"
-                                 time="Just Now"
-                                 prize={"Apple Air Pods"}
-                              />
-                              <WinRow
-                                 name="Manju"
-                                 time="Just Now"
-                                 prize={"Apple Air Pods"}
-                              />
-                              <WinRow
-                                 name="Manju"
-                                 time="Just Now"
-                                 prize={"Apple Air Pods"}
-                              />
-                              <WinRow
-                                 name="Manju"
-                                 time="Just Now"
-                                 prize={"Apple Air Pods"}
-                              />
+                              {names.map((name) => (
+                                 <WinRow
+                                    name={name}
+                                    time="Just Now"
+                                    prize={"Apple Air Pods"}
+                                 />
+                              ))}
                            </div>
                            <div className="" hidden={activeTab !== "user-wins"}>
                               <WinRow
