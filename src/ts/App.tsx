@@ -84,7 +84,7 @@ export default function App() {
       const rotation = targetRotation - currentRotation - extraSpins;
 
       spinWheelAudioRef.current.play();
-      await wheel.spin(rotation, 18000);
+      await wheel.spin(rotation, 11000);
       prizeDialogRef.current?.showModal();
    }, []);
 
