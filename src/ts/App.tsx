@@ -11,13 +11,7 @@ import Bulb from "./components/bulb";
 import WheelBelt from "./components/wheel-belt";
 import type { Prize } from "./config";
 
-const names = [
-   "Masum",
-   "Ares",
-   "Kripa",
-   "Prakriti",
-   "DB",
-];
+const names = ["Masum", "Ares", "Kripa", "Prakriti", "DB"];
 
 const resizeCanvas = (canvas: HTMLCanvasElement) => {
    canvas.width = canvas.parentElement?.clientWidth ?? canvas.width;
@@ -188,6 +182,7 @@ export default function App() {
    }, []);
 
    const ticketsDialogId = useId();
+   const prizeDialogId = useId();
 
    return (
       <>
@@ -271,7 +266,7 @@ export default function App() {
                      </div>
                      <div className="max-lg:row-start-2 max-xl:col-span-1 max-2xl:col-span-5 max-3xl:col-span-4 col-span-7 row-span-2">
                         <WheelBelt
-                           className="max-xs:p-[clamp(8px,2.5vw,22px)] max-3xl:p-5.5 p-7 relative @container max-lg:-mt-4 max-xl:-mt-16 -mt-10"
+                           className="p-(--padding) max-xs:[--padding:clamp(8px,2.5vw,22px)] max-3xl:[--padding:22px] [--padding:28px] relative @container max-lg:-mt-4 max-xl:-mt-16 -mt-10"
                            ref={wheelBeltRef}
                         >
                            <div
@@ -280,10 +275,11 @@ export default function App() {
                            ></div>
                            {Array.from({ length: 20 }).map((_, i, arr) => (
                               <Bulb
-                                 className="w-[3.25cqw] absolute left-1/2 top-3 -translate-1/2 origin-[center_calc(50cqw+3.25cqw*1.25)] rotate-(--angle)"
+                                 className="w-[3.25cqw] absolute left-1/2 top-1/2 -translate-1/2 rotate-(--angle)"
                                  style={{
                                     "--angle": `${(360 / arr.length) * i + 360 / arr.length / 2}deg`,
                                     "--delay": `${i * 150}ms`,
+                                    transform: `translateY(calc(50cqw + var(--padding) / 2))`,
                                  }}
                                  key={i}
                               />
@@ -387,14 +383,14 @@ export default function App() {
             </main>
          </div>
          <dialog
-            id="prize-dialog"
+            id={prizeDialogId}
             ref={prizeDialogRef}
             className="dialog-center"
          >
             <button
                className="dialog-close"
                command="close"
-               commandfor="prize-dialog"
+               commandfor={prizeDialogId}
             ></button>
             <div className="text-secondary-300 font-extrabold text-center text-3xl text-shadow-1 text-shadow-secondary-100">
                <p>
@@ -413,8 +409,19 @@ export default function App() {
                <p>{wonPrize?.message}</p>
             </div>
             <div className="grid mt-6 gap-3">
-               <button className="btn btn-pink">COLLECT PRIZE</button>
-               <button className="btn btn-primary">
+               <button
+                  className="btn btn-pink"
+                  command="close"
+                  commandfor={prizeDialogId}
+               >
+                  COLLECT PRIZE
+               </button>
+               <button
+                  className="btn btn-primary"
+                  command="close"
+                  commandfor={prizeDialogId}
+                  onClick={handleSpinButtonPress}
+               >
                   Spin Again · 1{" "}
                   <img className="inline" src="/images/ticket.svg" alt="" />{" "}
                   Ticket
