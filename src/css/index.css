@@ -330,7 +330,7 @@
 }
 
 @utility dialog-center {
-   @apply left-1/2 top-1/2 -translate-1/2 max-w-110 max-h-125 p-7 rounded-[26px] h-fit!;
+   @apply dialog left-1/2 top-1/2 -translate-1/2 max-w-110 max-h-125 p-7 rounded-[26px] h-fit;
 }
 
 @utility dialog-close {

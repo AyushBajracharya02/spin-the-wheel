@@ -389,7 +389,7 @@ export default function App() {
          <dialog
             id="prize-dialog"
             ref={prizeDialogRef}
-            className="dialog-center dialog"
+            className="dialog-center"
          >
             <button
                className="dialog-close"
@@ -421,7 +421,7 @@ export default function App() {
                </button>
             </div>
          </dialog>
-         <dialog id={ticketsDialogId} className="dialog-center dialog">
+         <dialog id={ticketsDialogId} className="dialog-center">
             <button
                className="dialog-close"
                command="close"
