@@ -12,16 +12,11 @@ import WheelBelt from "./components/wheel-belt";
 import type { Prize } from "./config";
 
 const names = [
-   "Ayush",
    "Masum",
    "Ares",
    "Kripa",
-   "Nazma",
    "Prakriti",
-   "Amar",
-   "Sayal",
    "DB",
-   "Sudarsan",
 ];
 
 const resizeCanvas = (canvas: HTMLCanvasElement) => {
