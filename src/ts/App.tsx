@@ -288,6 +288,7 @@ export default function App() {
                                  className="w-[3.25cqw] absolute left-1/2 top-3 -translate-1/2 origin-[center_calc(50cqw+3.25cqw*1.25)] rotate-(--angle)"
                                  style={{
                                     "--angle": `${(360 / arr.length) * i + 360 / arr.length / 2}deg`,
+                                    "--delay": `${i * 150}ms`,
                                  }}
                                  key={i}
                               />
@@ -307,6 +308,7 @@ export default function App() {
                                     className="w-2.5 absolute left-1/2 -translate-x-1/2 top-1 -translate-y-1 origin-[center_calc(50cqw+11px)] rotate-(--angle)"
                                     style={{
                                        "--angle": `${(360 / arr.length) * i + 360 / arr.length / 2}deg`,
+                                       "--delay": `${i * 150}ms`,
                                     }}
                                     key={i}
                                  />

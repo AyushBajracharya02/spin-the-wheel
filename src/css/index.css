@@ -28,6 +28,38 @@
    );
 }
 
+@keyframes bulbGlow {
+   0%,
+   100% {
+      /* Deep Dim State (Almost Off) */
+      background-image: radial-gradient(
+         circle at 75% 25%,
+         var(--color-secondary-300) 0%,
+         /* Faint residual warmth at filament */ var(--color-secondary-800) 50%,
+         /* Deep shadow casing */ var(--color-secondary-950) 100%
+            /* Dead black-gold edge */
+      );
+      filter: drop-shadow(0 0 0px rgba(0, 0, 0, 0)) brightness(0.4);
+   }
+   50% {
+      /* Intense High-Contrast Flare */
+      background-image: radial-gradient(
+         circle at 75% 25%,
+         var(--color-secondary-50) 0%,
+         /* Blinding hot spot */ var(--color-secondary-200) 25%,
+         var(--color-secondary-400) 70%,
+         /* Rich saturated glow */ var(--color-secondary-600) 100%
+      );
+      filter: drop-shadow(0 0 45px rgba(242, 181, 42, 0.9)) brightness(1.4);
+   }
+}
+
+.bulb-element {
+   /* Reduced duration to 1.2s for a faster, snappy pulse */
+   animation: bulbGlow 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+   animation-delay: var(--delay, 0s);
+}
+
 @theme {
    --breakpoint-xs: 36rem;
    --breakpoint-3xl: 120rem;
