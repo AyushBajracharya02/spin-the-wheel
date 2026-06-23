@@ -385,7 +385,7 @@ export default function App() {
          <dialog
             id={prizeDialogId}
             ref={prizeDialogRef}
-            className="dialog-center"
+            className="dialog-center scrollbar-none"
          >
             <button
                className="dialog-close"
@@ -399,7 +399,7 @@ export default function App() {
                      : "Better Luck Next Time!"}
                </p>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 max-w-50 mx-auto">
                <img src={wonPrize?.image} alt="" />
             </div>
             <div className="text-white text-center font-extrabold mt-6 text-2xl">
